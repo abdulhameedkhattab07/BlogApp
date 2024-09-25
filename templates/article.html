@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>{{article.title}}</h1>
+<small>Written by {{article.author}} on {{article.create_date}}</small><br>
+
+{% if article.filename != None %}
+<img src="{{ url_for('static_dir', path = 'uploads/'+article.filename) }}" class="img" alt="...">
+{% endif %}
+<div class="article-body">
+    
+    <div>
+        {{article.body | safe}}
+    </div>
+    <hr>
+    {% if session.username != article.author %}
+    <div class="forms">
+        <form action="{{url_for('like_article', id=article.id)}}" method="post">
+            <input type="hidden" name="_method" value="LIKE">
+            <input type="submit" value="Like" class="btn btn-default">
+        </form>
+        <form action="{{url_for('unlike_article', id=article.id)}}" method="post">
+            <input type="hidden" name="_method" value="UNLIKE">
+            <input type="submit" value="Unlike" class="btn btn-default">
+        </form>
+    </div>
+
+    {% endif %}
+</div>
+<hr>
+<h3>Comments:</h3>
+{% for comment in comments %}
+<div class="forms">
+    <h5>
+        <strong>{{ comment.username }}: </strong> {{comment.text}} <small>at:{{comment.created_at}}</small>
+    </h5>
+    {% if session.admin %}
+    <form action="{{url_for('del_comment', id=comment.id)}}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+    {% endif %}
+</div>
+{% endfor %}
+<hr>
+{% if session.username %}
+<form action="{{url_for('add_comment')}}" method="post">
+    <div class="form-group">
+        <input class="form-control" type="text" name="text" placeholder="Add a comment...">
+        <input type="hidden" name="article_id" value="{{article.id}}">
+    </div>
+    <button class="btn btn-primary" type="submit">Comment</button>
+</form>
+{% endif %}
+{% endblock %}

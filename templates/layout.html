@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <header class="nav">
+        <div class="container nav-item">
+            <a href="/" class="nav-brand">Blog!</a>
+            <nav class="navbar">
+
+                {% if session.logged_in %}
+                <a href="/">Home</a>
+                <a href="{{url_for('articles')}}">Tweets</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="{{url_for('profile')}}">Profile</a>
+                <a href="/logout">Logout</a>
+                {% elif session.admin %}
+                <a href="#">All Users</a>
+                <a href="/admindashboard">Dashboard</a>
+                <a href="{{url_for('articles')}}">All Tweets</a>
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/">Home</a>
+                <a href="#about">About</a>
+                <a href="{{url_for('articles')}}">Tweets</a>
+                <!-- <a href="#news">News</a> -->
+                <a href="#newsletter">Newsletter</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                <a href="#contact">Contact</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        {% include 'includes/_messages.html'%}
+    </div>
+    
+    <main class="container main">
+        {% block body %}{% endblock %}
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <p>Located at Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="footer-social">
+                <div class="social"></div>
+                <div class="social"></div>
+                <div class="social"></div>
+                <div class="social"></div>
+            </div>
+            <div class="footer-info">
+                <p>A Product Of <a href="#">Tech World</a></p>
+            </div>
+        </div>
+        <p>All Rights Reserved (c) TechWorld</p>
+    </footer>
+
+    <!--------------------------------------- js for toogle form ------------------------------------>
+    <script>
+        var LoginForm = document.getElementById("LoginForm")
+        var RegForm = document.getElementById("RegForm")
+        var Indicator = document.getElementById("Indicator")
+
+        function register() {
+            RegForm.style.transform = "translateX(0px)";
+            LoginForm.style.transform = "translateX(0px)";
+            Indicator.style.transform = "translateX(100px)"
+        }
+        function login() {
+            RegForm.style.transform = "translateX(300px)";
+            LoginForm.style.transform = "translateX(300px)";
+            Indicator.style.transform = "translateX(0px)"
+        }
+    </script>
+    <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('editor')
+    </script>
+</body>
+
+</html>

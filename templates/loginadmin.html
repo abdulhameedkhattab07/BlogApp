@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Login Admin</h1>
+    <form action="/loginadmin" method="POST">
+        <div class="form-group">
+            <label>Admin Id</label>
+            <input type="text" name="username" class="form-control" value={{request.form.username}}>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+{% endblock %}

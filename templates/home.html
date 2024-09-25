@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<main class="home container" id="home">
+        
+    <div class="home-content">
+        <h1>Welcome To Blog App.</h1>
+        <h3>A Product Of Tech World</h3>
+        <p>Here You Can Act Socialy With People Around The The World Without Stress</p>
+        {% if session.logged_in %}
+        {% else %}
+        <div class="btn-box">
+            <a href="/register">Get Started</a>
+            <a href="#about">About</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="home-quote">
+        <p>Information is The Key Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, qui. To Success. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, quos!</p>
+        <p>Information is The Key Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, qui. To Success. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, quos!</p>
+        <p>Information is The Key Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, qui. To Success. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, quos!</p>
+    </div>
+</main>
+<hr>
+<section class="about container" id="about">
+    <h3>About Us.</h3>
+    <div class="about-content">
+        <p>Being A Blogging App, We Already Know That There are So Many Blog Applications Out There. Here We Make Sure Our Users Are Satisfied</p>
+        <p>We Make Sure To Provide Top News Both Local And International News. Our Users Are Able to Express Their Minds Through Posting And Blogging</p>
+        <p>Being A Blogging App, We Already Know That There are So Many Blog Applications Out There. Here We Make Sure Our Users Are Satisfied</p>
+        <p>Being A Blogging App, We Already Know That There are So Many Blog Applications Out There. Here We Make Sure Our Users Are Satisfied</p>    
+    </div>
+</section>
+<hr>
+<section class="news container" id="news">
+    <h3>Top Tweets By Our Users</h3>
+    <div class="articles">
+        {% for article in articles %}
+        <div class="articles-info">
+            <a href="article/{{article.id}}">{{ article.title }} </a>
+            <p>Posted On {{ article.create_date }}</p>
+            <p>By <strong>{{article.author}}</strong> </p>
+            <a href="article/{{article.id}}">View</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<hr>
+<section class="news-letter container" id="newsletter">
+    <h3>Our Newsletter</h3>
+    <div class="form">
+        <form>
+            <div>
+                <input type="email" placeholder="Enter Your Email...">
+                <a href="#">Subscribe</a>
+            </div>
+        </form>
+        <div class="form-info">
+            <p>Subscribe To Our News Letter To Get Updated News About Politics, International News, Education And Lot More.</p>
+        </div>
+    </div>
+</section>
+<hr>
+<section class="contact container" id="contact">
+    <div class="center-text" data-aos="fade-down">
+        <h3>Contact <span>Us</span></h3>
+    </div>
+    <div class="contact-form">
+        <form action="">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Email Address..." required>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here." required></textarea>
+            <input type="submit" value="Send Message" class="send-btn">
+        </form>
+    </div>
+</section>
+{% endblock %}

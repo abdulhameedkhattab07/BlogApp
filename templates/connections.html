@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Your Connections</h1>
+<hr>
+<h2>Your Messages</h2>
+<ul class="list-group">
+    <table class="table table-striped">
+        {% for user in connected_users %}
+        <tr>
+            <td>{{user.username}}</td>
+            <td><a href="{{url_for('message', id=user.id)}}">Message</a></td>
+        </tr>
+        {% else %}
+        <p>No connections yet.</p>`
+        {% endfor %}
+    </table>
+</ul>
+<hr>
+<h2>Message Requests</h2>
+<table class="table table-striped">
+    {% for user in requests %}
+    <tr>
+        <td>{{user.username}}</td>
+        <td><a href="{{url_for('message', id=user.id)}}">Message</a></td>
+    </tr>
+    {% else %}
+    <p>No connections yet.</p>`
+    {% endfor %}
+</table>
+
+{% endblock %}

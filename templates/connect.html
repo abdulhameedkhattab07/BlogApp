@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Connect With Other Users</h1>
+<hr>
+<div class="articles">
+    {% for user in users %}
+    <div class="articles-info">
+        <a href="{{url_for('message', id=user.id)}}">{{ user.username }} </a>
+        <p>Type: {{user.type}}</p>
+        <a href="{{url_for('message', id=user.id)}}">Message</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

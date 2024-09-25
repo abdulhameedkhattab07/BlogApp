@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Tweets</h1>
+    <div>
+        <form method="POST" action="{{url_for('articles')}}" class="forms">
+            <label for="article-type">Filter By:</label>
+            <input type="radio" id="all" name="article-type" value="" checked>
+            <label for="all">All</label>
+            <input type="radio" id="education" name="article-type" value="ُeducation">
+            <label for="education">Education</label>
+            <input type="radio" id="news" name="article-type" value="news">
+            <label for="news">News</label>
+            <input type="radio" id="jokes" name="article-type" value="jokes">
+            <label for="jokes">Jokes</label>
+            <input type="radio" id="coding" name="article-type" value="coding">
+            <label for="coding">Coding</label>
+            <input type="radio" id="memes" name="article-type" value="memes">
+            <label for="memes">Memes</label>
+            <button type="submit" class="btn btn-default">Filter</button>
+        </form>
+    </div>
+    <hr>
+    <div class="articles">
+        {% for article in articles %}
+        <div class="articles-info">
+            <a href="article/{{article.id}}">{{ article.title }} </a>
+            <p>Posted On {{ article.create_date }}</p>
+            <p>By <strong>{{article.author}}</strong> </p>
+            <p>Likes: {{ article.likes }}</p>
+            <a href="article/{{article.id}}">View</a>
+        </div>
+        {% else %}
+        <p>No Post Found</p>
+
+        {% endfor %}
+    </div>
+{% endblock %}

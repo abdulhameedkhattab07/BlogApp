@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Bloggers</h1>
+<hr>
+<ul class="list-group">
+    {% for blogger in bloggers %}
+        <li class="list-group-item lead"><a href="{{url_for('blogger', id=blogger.id)}}">{{ blogger.blogname }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

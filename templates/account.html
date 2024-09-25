@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from 'includes/_formhelpers.html' import render_field %}
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>
+                        <hr id="Indicator">
+                    </div>
+                    <form action="" id="LoginForm">
+                        <div>{{ render_field(form.username) }}</div>
+                        <div>{{ render_field(form.password) }}</div>
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+
+                    <form action="" id="RegForm">
+                        <div>{{ render_field(form.name) }}</div>
+                        <div>{{ render_field(form.username) }}</div>
+                        <div>{{ render_field(form.email) }}</div>
+                        <div>{{ render_field(form.password) }}</div>
+                        <div>{{ render_field(form.confirm) }}</div>
+                        <button type="submit" class="btn btn-succes">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

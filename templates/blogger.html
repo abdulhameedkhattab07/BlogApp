@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>{{blogger.blogname}} profile</h1>
+<hr>
+<h3>Name: {{blogger.name}}</h3>
+<p>Bio: {{blogger.bio | safe}}</p>
+{% if subscription %}
+<p>Subscribers: {{subscription}}</p>
+{% endif %}
+<hr>
+<form action="{{url_for('subscribe', blogger_id=blogger.id)}}" method="post">
+    <button type="submit" class="btn btn-success">Subscribe</button>
+</form>
+<h2>Posts:</h2>
+<hr>
+<div class="articles">
+    {% for article in articles %}
+    <div class="articles-info">
+        <a href="{{url_for('article', id=article.id)}}">{{ article.title }} </a>
+        <p>Posted On {{ article.create_date }}</p>
+        <p>By {{article.author}} </p>
+        <p>Likes: {{ article.likes }}</p>
+        <a href="{{url_for('article', id=article.id)}}">View</a>
+    </div>
+    {% else %}
+    <p>No Posts</p>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

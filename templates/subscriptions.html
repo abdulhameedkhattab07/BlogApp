@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Subscriptions</h1>
+<ul class="list-group">
+    {% for subscription in subscriptions %}
+        <li class="list-group-item lead"><a href="{{url_for('blogger', id = subscription.blogger_id)}}">{{ subscription.blogname }}</a></li>
+        {% else %}
+        <p>You Have No Subscriptions Yet.</p>
+    {% endfor %}
+</ul>
+{% endblock %}
