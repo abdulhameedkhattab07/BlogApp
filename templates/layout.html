@@ -12,6 +12,8 @@
     <header class="nav">
         <div class="container nav-item">
             <a href="/" class="nav-brand">Blog!</a>
+            <!-- Add a button to toggle the sidebar-->
+            <button class="menu-btn" onclick="openSidebar()">☰</button>
             <nav class="navbar">
 
                 {% if session.logged_in %}
@@ -41,7 +43,7 @@
     <div class="container">
         {% include 'includes/_messages.html'%}
     </div>
-    
+
     <main class="container main">
         {% block body %}{% endblock %}
     </main>
@@ -86,6 +88,19 @@
     <script type="text/javascript">
         CKEDITOR.replace('editor')
     </script>
+
+    <!-- <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight =  "0px";
+        function menutoggle(){
+            if(MenuItems.style.maxHeight == "0px"){
+                MenuItems.style.maxHeight =  "200px";
+            }
+            else{
+                MenuItems.style.maxHeight =  "0px]";
+            }
+        }
+    </script> -->
 </body>
 
 </html>
